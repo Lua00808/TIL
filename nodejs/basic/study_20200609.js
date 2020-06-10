@@ -121,4 +121,34 @@ if (theDay instanceof Date) {
 
 
 // 式
-// 
+// ある値へと決定される有効なコード単位のこと
+
+// 基本式
+// 以下のような関数があるとする:
+function validate(obj, lowval, hival) {
+  if ((obj.value < lowval) || (obj.value > hival))
+    console.log('Invalid Value!');
+}
+// 以下の例のように、各フォーム要素の onChange イベントハンドラにおいて、validate を呼び出し、その関数にフォーム要素を渡すのに this を使うことができる。
+// <p>Enter a number between 18 and 99:</p>
+// <input type="text" name="age" size=3 onChange="validate(this, 18, 99);">
+
+// グループ化演算子
+// 値を括弧で囲むことで演算の優先順位を上書きすることができるというやつ。
+
+// 左辺式
+// new: オブジェクトのインスタンス作成時に使用する。
+// var オブジェクト名 = new objectType([引数1, 引数2, ..., 引数N]);
+
+// super: 自分の親のオブジェクトの関数を呼び出すのに使用される。
+// super([引数]); // 親のコンストラクタを呼び出す。
+// super.親の関数([引数]);
+
+// 展開演算子
+// 複数の引数(関数呼び出し時)や要素(配列リテラルを書く場合)が来るべき場所にそれらを展開できる式を書くことができる。
+// var parts = ['shoulder', 'knees'];
+// var lyrics = ['head', ...parts, 'and', 'toes'];
+
+function f(x, y, z) { }
+var args = [0, 1, 2];
+f(...args);
