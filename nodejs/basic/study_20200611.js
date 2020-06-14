@@ -41,3 +41,30 @@ console.log(`Fifteen is ${five + ten} and not ${2 * five + ten}.`);
 // 特殊文字
 // いろいろあるので後で調べる(ひととおり目は通す)。
 
+// JavaScript での正規表現の使い方
+// 正規表現を使用するメソッド
+var myRe = /d(b+)d/g;
+var myArray = myRe.exec("cdbbdbsbz");
+
+var myRe = new RegExp('d(b+)d', 'g');
+var myArray = myRe.exec('cdbbdbsbz');
+
+// 括弧で囲まれた部分文字列のマッチの使用
+var re = /(\w+)\s(\w+)/;
+var str = 'John Smith';
+var newstr = str.replace(re, '$2, $1');
+console.log(newstr);
+// "Smith, John"
+
+// フラグを用いた高度な検索
+// 正規表現フラグ
+
+// フラグを含める
+var re = /pattern/flags;
+
+var re = new RegExp('pattern', 'flags');
+
+// 例
+// 入力文字列の順序変更
+
+// 特殊文字を用いた入力の確認
