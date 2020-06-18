@@ -93,3 +93,24 @@ function Engineer(name, projs, mach) {
 /* オブジェクトのプロパティにデフォルトの値を持たせて、実行時にデフォルト値を変更したいのであれば、コンストラクター関数内でなく、コンストラクターのプロトタイプ内でプロパティを設定するようにしてください。 */
 
 // インスタンス関係の決定
+// new.Foo() は __proto__ == Foo.prototype となるオブジェクトを作成する。
+function instanceOf(object, constructor) {
+    object = object.__proto__;
+    while (object != null) {
+        if (object == constructor.prototype)
+            return true;
+        if (typeof object == 'xml') {
+            return constructor.prototype == XML.prototype;
+        }
+        object = object.__proto__;
+    }
+    return false;
+}
+
+// コンストラクターにおけるグローバル情報
+// if 文で条件をつけてあげる or プロトタイプオブジェクトをコピーすることで、グローバルな値の変化を防げる。
+
+
+// 多重継承はなし
+// js は多重継承をサポートしていない(オブジェクトが無関係なオブジェクトから、プロパティと値を継承できない)。
+// js はコンストラクター関数がその中で複数の別のコンストラクター関数を呼び出すようにすることができる。
