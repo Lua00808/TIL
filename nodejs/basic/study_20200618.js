@@ -37,3 +37,18 @@ new Promise((resolve, reject) => {
 
 
 // エラーの伝播
+async function foo() {
+    try {
+        const result = await doSomething();
+        const newResult = await doSomethingElse(result);
+        const finalResult = await doThirdThing(newResult);
+        console.log(`Got the final result: ${finalResult}`);
+    } catch(error) {
+        failureCallback(error);
+    }
+}
+
+// Promise 失敗のイベント
+// rejectionhandled: Promise が失敗したとき、それが reject 関数などによって処理されたあとに送られる。
+// unhadledrejection: Promise が失敗して、ハンドラーが存在しないときに送られる。
+
