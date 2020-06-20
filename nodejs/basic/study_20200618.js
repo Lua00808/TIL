@@ -52,3 +52,24 @@ async function foo() {
 // rejectionhandled: Promise が失敗したとき、それが reject 関数などによって処理されたあとに送られる。
 // unhadledrejection: Promise が失敗して、ハンドラーが存在しないときに送られる。
 
+// 古いコールバック API をラップする Promise の作成
+
+// 合成 (Composition)
+// 以下のように複数の処理を平行に開始し、全ての処理が終了するのを待つことができる。
+Promise.all([func1(), func2(), func3()])
+.then(([result1, result2, result3]) => { /* result1, result2, result3 が使える */ });
+
+// タイミング
+
+// ネスト
+// 単純な Promise チェーンならば、ネストは不用意な合成の結果生まれるものなので、ネストせず平らにしておくのがベスト。
+doSomethingCritical()
+.then(result => doSomethingOptional(result)
+  .then(optionalResult => doSomethingExtraNice(optionalResult))
+  .catch(e => {})) // オプションの処理が失敗すれば無視して進める
+.then(() => moreCriticalStuff())
+.catch(e => console.log("Critical failure: " + e.message));
+
+// よくある間違い
+
+// Promise とタスクが衝突するとき
